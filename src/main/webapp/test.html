@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="love/index_files/jquery.min.js"></script>
+    <script>
+        //控制全屏
+        function enterfullscreen() { //进入全屏
+            $("#fullscreen").html("退出全屏");
+            var docElm = document.documentElement;
+            //W3C
+            if(docElm.requestFullscreen) {
+                docElm.requestFullscreen();
+            }
+            //FireFox
+            else if(docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen();
+            }
+            //Chrome等
+            else if(docElm.webkitRequestFullScreen) {
+                docElm.webkitRequestFullScreen();
+            }
+            //IE11
+            else if(elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function exitfullscreen() { //退出全屏
+            $("#fullscreen").html("切换全屏");
+            if(document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if(document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if(document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            } else if(document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        var a = 0;
+        $(function (){
+            $('#fullscreen').on('click', function() {
+                a++;
+                a % 2 == 1 ? enterfullscreen() : exitfullscreen();
+            })
+        })
+    </script>
+</head>
+<body>
+<a type="button" id="fullscreen" class="btn btn-default visible-lg visible-md"><i class="fa fa-refresh" aria-hidden="true"></i> 切换全屏</a>
+<li class="fk_service_box fk_service_zmkiqp"  onclick="javascript:document.getElementById('fullscreen').click();" >
+    <div class="fk_service_zmkiqp_cont"> <span class="fk_service_triangle"></span>切换全屏</div>
+</li>
+</body>
+</html>
