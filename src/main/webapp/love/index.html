@@ -30,16 +30,33 @@
             -o-transform: rotate(90deg); /* Opera */
         }
     </style>
+    <script>
+       $(function (){
+           var vs = document.getElementsByTagName("audio");
+           $.each(vs,function (i,v) {
+               var idx = setInterval(function (){
+                   if(v && v.play){
+                       v.play()
+                   }
+               },100)
+               v.addEventListener("play", function () {//监听audio是否加载完毕，如果加载完毕，则读取audio播放时间
+                   clearInterval(idx)
+               });
+           });
+       })
+    </script>
 </head>
 <body>
 <audio autoplay="autopaly">
     <source src="index_files/1054559816560064.mp3"/>
 </audio>
+
 <div id="main" class="main">
 
     <div id="wrap">
         <div id="text">
             <div id="code">
+                <a id="reminiscence" href="/love/reminiscence.do">回忆</a><br/>
                 <span class="say">* Our Story</span><br>
                 <span class="say"> </span><br>
                 <span class="say"> Our Story  我们的故事</span><br>
@@ -90,8 +107,8 @@
         var width = canvas.width();
         var height = canvas.height();
 
-        canvas.attr("width", width);
-        canvas.attr("height", height);
+        // canvas.attr("width", width);
+        // canvas.attr("height", height);
 
         var opts = {
             seed: {
@@ -151,6 +168,7 @@
             canvas.toggleClass('hand', seed.hover(x, y));
         });
 
+        //心
         var seedAnimate = eval(Jscex.compile("async", function () {
             seed.draw();
             while (hold) {
@@ -167,6 +185,7 @@
             }
         }));
 
+        //树枝
         var growAnimate = eval(Jscex.compile("async", function () {
             do {
                 tree.grow();
@@ -174,6 +193,7 @@
             } while (tree.canGrow());
         }));
 
+        //树心
         var flowAnimate = eval(Jscex.compile("async", function () {
             do {
                 tree.flower(2);
@@ -181,6 +201,8 @@
             } while (tree.canFlower());
         }));
 
+
+        //树移动
         var moveAnimate = eval(Jscex.compile("async", function () {
             tree.snapshot("p1", 240, 0, 610, 680);
             while (tree.move("p1", 500, 0)) {
@@ -193,10 +215,11 @@
             // 会有闪烁不得意这样做, (＞﹏＜)
             canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
             canvas.css("background", "#ffe");
-            $await(Jscex.Async.sleep(300));
+            $await(Jscex.Async.sleep(1));
             canvas.css("background", "none");
         }));
 
+        //飘心
         var jumpAnimate = eval(Jscex.compile("async", function () {
             var ctx = tree.ctx;
             while (true) {
@@ -207,6 +230,8 @@
             }
         }));
 
+
+        //底时间
         var textAnimate = eval(Jscex.compile("async", function () {
             var together = new Date();
             together.setFullYear(2021, 10, 14); 			//时间年月日

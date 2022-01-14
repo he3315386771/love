@@ -14,4 +14,12 @@
         <servlet-name>love</servlet-name>
         <url-pattern>/start.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>reminiscence</servlet-name>
+        <servlet-class>com.hejj.servlet.LoveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reminiscence</servlet-name>
+        <url-pattern>/reminiscence.do</url-pattern>
+    </servlet-mapping>
 </web-app>
