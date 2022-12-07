@@ -16,6 +16,8 @@ public class LoveServlet extends HttpServlet {
         String url = request.getRequestURL().toString();
         if(url.endsWith("start.do")){
             response.sendRedirect(request.getContextPath()+"/love/index.html");
+        }else if(url.endsWith("snowflake.do")){
+            response.sendRedirect(request.getContextPath()+"/snowflake/snowflake.html");
         }else if(url.endsWith("reminiscence.do")){
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/videos.jsp");
             List<String> paths = getStringPath();

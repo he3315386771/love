@@ -15,6 +15,14 @@
         <url-pattern>/start.do</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>snowflake</servlet-name>
+        <servlet-class>com.hejj.servlet.LoveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>snowflake</servlet-name>
+        <url-pattern>/snowflake.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>reminiscence</servlet-name>
         <servlet-class>com.hejj.servlet.LoveServlet</servlet-class>
     </servlet>
